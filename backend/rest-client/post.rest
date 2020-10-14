@@ -1,0 +1,28 @@
+# @name post
+POST http://localhost:3000/post
+Content-Type: application/json
+
+{
+  "title": "This is a post",
+  "description": "This is a description"
+}
+
+###
+GET http://localhost:3000/post/all
+
+###
+GET http://localhost:3000/post/{{post.response.body.post._id}}
+
+###
+PATCH http://localhost:3000/post/{{post.response.body.post._id}}
+Content-Type: application/json
+
+{
+  "title": "Why bother?"
+}
+
+###
+DELETE http://localhost:3000/post/all
+
+###
+DELETE http://localhost:3000/post/{{post.response.body.post._id}}
