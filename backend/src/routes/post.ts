@@ -22,7 +22,10 @@ router.get(
 
 router.get(
   '/:postId',
-  async (req: Request, res: Response<PostSchema | { message: string }>) => {
+  async (
+    req: Request<{ postId: string }>,
+    res: Response<PostSchema | { message: string }>
+  ) => {
     try {
       const post = await Post.findById(req.params.postId)
       res.status(200).send(post!)
@@ -32,15 +35,21 @@ router.get(
   }
 )
 
-router.post('/', async (req: Request, res: Response) => {
-  try {
-    const post = new Post(req.body)
-    await post.save()
-    res.status(200).send({ post })
-  } catch (error) {
-    res.status(400).send({ message: error.message })
+router.post(
+  '/',
+  async (
+    req: Request<{}, {}, { title: string; description: string }>,
+    res: Response
+  ) => {
+    try {
+      const post = new Post(req.body)
+      await post.save()
+      res.status(200).send({ post })
+    } catch (error) {
+      res.status(400).send({ message: error.message })
+    }
   }
-})
+)
 
 router.delete('/all', async (req: Request, res: Response) => {
   try {

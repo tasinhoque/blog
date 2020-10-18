@@ -8,6 +8,9 @@ Content-Type: application/json
 }
 
 ###
+GET http://localhost:3000/search?book=the+handmaid's+tale
+
+###
 GET http://localhost:3000/post/all
 
 ###

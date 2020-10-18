@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { Request, Response } from 'express'
 import mongoose from 'mongoose'
 import postRoutes from './routes/post'
 import dotenv from 'dotenv'
@@ -10,6 +10,13 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use('/post', postRoutes)
+
+app.get(
+  '/search',
+  (req: Request<{}, {}, {}, { book: string }>, res: Response) => {
+    res.status(200).send(req.query.book)
+  }
+)
 
 app.listen(process.env.PORT, () =>
   console.log(`Server running on port ${process.env.PORT}`)
