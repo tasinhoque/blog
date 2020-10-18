@@ -1,25 +1,36 @@
-import express, { Request, Response } from 'express'
+import express, { Request, Response, NextFunction } from 'express'
 import Post from '../models/Post'
+import { PostSchema } from '../models/Post'
 
 const router = express.Router()
 
-router.get('/all', async (req: Request, res: Response) => {
-  try {
-    const posts = await Post.find()
-    res.status(200).send(posts)
-  } catch (error) {
-    res.status(400).send({ message: error.message })
+router.get(
+  '/all',
+  async (
+    req: Request,
+    res: Response<PostSchema[] | { message: string }>,
+    next: NextFunction
+  ) => {
+    try {
+      const posts = await Post.find()
+      res.status(200).send(posts)
+    } catch (error) {
+      res.status(400).send({ message: error.message })
+    }
   }
-})
+)
 
-router.get('/:postId', async (req: Request, res: Response) => {
-  try {
-    const post = await Post.findById(req.params.postId)
-    res.status(200).send(post)
-  } catch (error) {
-    res.status(400).send({ message: error.message })
+router.get(
+  '/:postId',
+  async (req: Request, res: Response<PostSchema | { message: string }>) => {
+    try {
+      const post = await Post.findById(req.params.postId)
+      res.status(200).send(post!)
+    } catch (error) {
+      res.status(400).send({ message: error.message })
+    }
   }
-})
+)
 
 router.post('/', async (req: Request, res: Response) => {
   try {
