@@ -8,6 +8,9 @@ Content-Type: application/json
 }
 
 ###
+GET http://localhost:3000/search?book=the+lord+of+the+rings
+
+###
 GET http://localhost:3000/post/all
 
 ###
