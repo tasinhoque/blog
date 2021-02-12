@@ -3,7 +3,7 @@ POST http://localhost:3000/post
 Content-Type: application/json
 
 {
-  "title": "This is a post",
+  "title": "This isljfslkdj a post",
   "description": "This is a description"
 }
 
@@ -21,7 +21,8 @@ PATCH http://localhost:3000/post/{{post.response.body.post._id}}
 Content-Type: application/json
 
 {
-  "title": "Why bother?"
+  "title": "Whyher?",
+  "desccription": "abc"
 }
 
 ###

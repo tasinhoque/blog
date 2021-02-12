@@ -1,6 +1,7 @@
 npm init -y
-npx tsc --init
-tsc --version
+npm i -g typescript
+npm i -g ts-node
+tsc --init
 Type Inference/Type Annotation
 in operator
 Type Aliases (the type operator)

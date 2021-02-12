@@ -4,7 +4,7 @@ import postRoutes from './routes/post'
 import dotenv from 'dotenv'
 
 dotenv.config()
-const app = express()
+const app: express.Application = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
